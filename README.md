@@ -19,8 +19,19 @@ UpdateEvent - updates event.
 DeleteEvent - removes event from database.
 CreateRecurringEvent - creates recurring event, user can choose frequency from RepetitivityType enum or create your own type.
 # Description of data models
-User - contains unique id, name and password, email.
-Event - contains authorId, Description, StartDateTime, EndDateTime, Title and if IsRecurring(with type and interval) and list of participants 
-Reminder - 
-Notification -
-/* add category to events, to show in wgich color should it shown */
+1. User:
+ - unique userId for searching in db
+ - UserName (is unique for each user) it's what users typically use to log in.
+ - Password for ensuring the security of user accounts
+ - Email - it used to send reminding notifications
+2. Event:
+ - unique EventId for searching in db
+ - Title - provides a quick overview of what the event is about and is typically displayed prominently in the calendar view.
+ - Description - provides more information about event, or any other relevant information that users might need to know. 
+ - StartTime - indicates when the event begins.
+ - EndTime - indicates when the event ends.
+ - IsRecurring - indicates whether the event is a one-time occurrence or if it repeats at regular intervals
+3. Recurring event:
+4. Reminder:
+ - ReminderTime - the specific time when the reminder is scheduled to trigger. 
+ - Description - provides information about what the user needs to remember. 
