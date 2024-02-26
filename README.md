@@ -11,13 +11,19 @@
 # System's class diagram
 pic of class diagram here
 ## Data Access Layer 
-GetEvents - return all events stored in database.
-GetUserEvents -return all user's events.
-GetEvent - return one event by event_id.
-CreateEvent - creates event and adds it into database.
-UpdateEvent - updates event.
-DeleteEvent - removes event from database.
-CreateRecurringEvent - creates recurring event, user can choose frequency from RepetitivityType enum or create your own type.
+ ### Events
+1. GetEvents - return all events stored in database.
+2. GetUserEvents -return all user's events.
+3. GetEvent - return one event by event_id.
+4. CreateEvent - creates event and adds it into database.
+5. UpdateEvent - updates event.
+6. DeleteEvent - removes event from database.
+7. CreateRecurringEvent - creates recurring event, user can choose frequency from RepetitivityType enum or create your own type.
+ ### User
+1. AddUser - insert user in db.
+2. GetUserById - returns user with requested id.
+3. DeleteUser - deletes user from db with requested id.
+4. Auth - user authorisation.
 # Description of data models
 1. User:
  - unique userId for searching in db
