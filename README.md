@@ -9,7 +9,7 @@
    5. Create events by specifying title, description, start time, end time, and other relevant details
    6. Delete existing events from the calendar.
 # System's class diagram
-![изображение](https://github.com/EgrShishov/AgendaCalendar/assets/112828095/a7296ab8-c198-46a6-95b2-5554b0ca8e45)
+![изображение](https://github.com/EgrShishov/ASP.NET-AgendaCalendar/assets/112828095/68ad197f-8051-4927-ac88-933e9acebdf4)
 ## Data Access Layer 
  ### Events
 1. GetEvents - return all events stored in database.
