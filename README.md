@@ -54,8 +54,84 @@
 4. Reminder:
  - ReminderTime - the specific time when the reminder is scheduled to trigger. 
  - Description - provides information about what the user needs to remember.
-5. Calendar:
- - Id 
- - AuthorId
- - Events - list of events, specific to that calendar
- - Reminders - list of reminders of this calendar
+## Data Models Description
+
+### Entity
+
+```csharp
+public class Entity
+{
+    public int Id { get; set; }
+}
+```
+### User
+
+```csharp
+public class User : Entity
+{
+    public string UserName { get; set; }
+    public string Password { get; set; }
+    public string Email { get; set; }
+}
+
+```
+### Calendar
+
+```csharp
+public class Calendar : Entity
+{
+    public int AuthorId { get; set; }
+    public string Title { get; set; }
+    public string CalendarDescription { get; set; }
+    public List<IEvent> Events { get; set; } = new();
+    public List<Reminder> Reminders { get; set; } = new();
+    public List<int> Subscribers { get; set; } = new();
+}
+```
+### Event
+
+```csharp
+public class Event : IEvent
+{
+    public string Title { get; set; }
+    public DateTime StartTime { get; set; }
+    public DateTime EndTime { get; set; }
+    public string Description { get; set; }
+    public int AuthorId { get; set; }
+    public List<EventParticipant> EventParticipants { get; set; } = new();
+}
+```
+### Reccuring Event
+
+```csharp
+public class RecurringEvent : Entity, IEvent
+{
+    public int Interval {  get; set; }
+    public RecurrenceType Type { get; set; }
+    public int AuthorId { get; set; }
+    public string Description { get; set; }
+    public DateTime StartTime { get; set; }
+    public DateTime EndTime { get; set; }
+    public string Title { get; set; }
+    public List<EventParticipant> EventParticipants { get; set; } = new();
+```
+### Reminder
+
+```csharp
+public class Reminder : Entity
+ {
+     public string Description { get; set; }
+     public DateTime ReminderTime { get; set; }
+     public string Email {  get; set; }
+     public int EventId {  get; set; }
+ }
+```
+### EventParticipant
+
+```csharp
+ public class EventParticipant : Entity
+ {
+     public string Name {  get; set; }
+     public string Email { get; set; }
+ }
+```
