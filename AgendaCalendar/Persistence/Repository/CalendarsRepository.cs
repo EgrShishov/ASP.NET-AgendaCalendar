@@ -38,15 +38,16 @@ namespace AgendaCalendar.Persistence.Repository
         public async Task<IReadOnlyList<Calendar>> ListAsync(Expression<Func<Calendar, bool>> filter, CancellationToken cancellationToken = default)
         {
             var query = _dbContext.Calendars.AsQueryable();
-            if (filter != null) query = query.Where(filter);
+            if (filter != null) query = query.Where(filter); 
 
             return query.ToList();
         }
 
-        public async Task UpdateAsync(Calendar calendar, CancellationToken cancellationToken = default)
+        public async Task<Calendar> UpdateAsync(Calendar calendar, CancellationToken cancellationToken = default)
         {
             var myCalendar = _dbContext.Calendars.Find(x => x.Id == calendar.Id);
             myCalendar.Update(calendar);
+            return myCalendar;
         }
     }
 }

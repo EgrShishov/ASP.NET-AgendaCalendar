@@ -1,127 +1,136 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="AgendaCalendar.User">
-    <Position X="7.25" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAQAAAAAAAAA=</HashCode>
-      <FileName>User.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="AgendaCalendar.Reminder">
-    <Position X="10.75" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
-      <FileName>Reminder.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="AgendaCalendar.RecurringEvent">
-    <Position X="9" Y="3" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgAEAAAIAAAAAAIAAgAAAAARAAAAAAAAA=</HashCode>
-      <FileName>RecurringEvent.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="AgendaCalendar.EventsRepository" Collapsed="true">
-    <Position X="5.25" Y="2.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>EventsRepository.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="AgendaCalendar.UserService">
-    <Position X="1.25" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAIAAAAAAAEAAAAAAIAAAAAAAAgAAAAABAAAAA=</HashCode>
-      <FileName>UserService.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="AgendaCalendar.EventService">
-    <Position X="3" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAQAAAAAAAIAARgAAAAAAAAAAAAAAAACAAgAAAACAA=</HashCode>
-      <FileName>EventService.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="AgendaCalendar.AppDbContext">
-    <Position X="1.25" Y="3" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>gAAAAAAAAAAAAAAAAAAAAAEEAAAAEAAAAAAAAAAAAAA=</HashCode>
-      <FileName>AppDbContext.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="AgendaCalendar.UsersRepository" Collapsed="true">
-    <Position X="5.25" Y="3.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAACAAAAAAAAIAAAAIA=</HashCode>
-      <FileName>UserRepository.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="AgendaCalendar.Calendar">
-    <Position X="10.75" Y="3.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAgAAAAAAABAAAAAAAAA=</HashCode>
-      <FileName>Calendar.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="AgendaCalendar.CalendarService">
-    <Position X="3" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAIACAAAAAAAAAAAAAAQAAAA=</HashCode>
-      <FileName>ImportExportService.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="AgendaCalendar.Event">
-    <Position X="7.25" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAACAAAAAAAgAEAAAAAAAAAAIAAgAAAAABAAAAAAAAA=</HashCode>
-      <FileName>Event.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="AgendaCalendar.CalendarRepository" Collapsed="true">
-    <Position X="5.25" Y="4.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAACAAAAAAAAIAAAAIA=</HashCode>
-      <FileName>CalendarsRepository.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="AgendaCalendar.Entity" Collapsed="true">
-    <Position X="9" Y="5.75" Width="1.5" />
+  <Class Name="AgendaCalendar.Domain.Entities.Entity">
+    <Position X="11.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Entity.cs</FileName>
+      <FileName>Domain\Entities\Entity.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="AgendaCalendar.IRepository&lt;T&gt;">
-    <Position X="5.25" Y="0.5" Width="1.5" />
+  <Class Name="AgendaCalendar.Domain.Entities.Event">
+    <Position X="13.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAACAAgAAAAAIAAAAIA=</HashCode>
-      <FileName>IRepository.cs</FileName>
+      <HashCode>AAQCAAABACAgAEAEAAAAAAAAIAAgAAAAABBAAAAAAAA=</HashCode>
+      <FileName>Domain\Entities\Event.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AgendaCalendar.Domain.Entities.Calendar">
+    <Position X="13.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAAAAAAEAAAAAAAAAAAgAAAAAAABAAAQAAAAQ=</HashCode>
+      <FileName>Domain\Entities\Calendar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AgendaCalendar.Domain.Entities.RecurringEvent">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAABACAgAEAEAIAAAAAAIAAgAAAAARBAAAAAAAA=</HashCode>
+      <FileName>Domain\Entities\RecurringEvent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AgendaCalendar.Domain.Entities.Reminder">
+    <Position X="9.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAgACAgAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Domain\Entities\Reminder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AgendaCalendar.Domain.Entities.User">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAEAAAAAAAAAAAAAAACAQAAAAAAAAA=</HashCode>
+      <FileName>Domain\Entities\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AgendaCalendar.Persistence.Data.AppDbContext">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAKAAAAAAAAAACEAAAAAEAgCAEAAEAAQAAAAAAAA=</HashCode>
+      <FileName>Persistence\Data\AppDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AgendaCalendar.Persistence.Repository.CalendarRepository">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAEAAAACIAgAAAAAAAAAIIA=</HashCode>
+      <FileName>Persistence\Repository\CalendarsRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AgendaCalendar.Persistence.Repository.EventsRepository">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAEAAAACIAgAAAAAAAAAIIA=</HashCode>
+      <FileName>Persistence\Repository\EventsRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AgendaCalendar.Persistence.Repository.ReminderRepository">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAEAAAACIAgAAAAAAAAAIIA=</HashCode>
+      <FileName>Persistence\Repository\ReminderRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AgendaCalendar.Persistence.Repository.UsersRepository">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAEAAAACIAgAAAAAAAAAIIA=</HashCode>
+      <FileName>Persistence\Repository\UserRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AgendaCalendar.Persistence.Repository.UnitOfWork">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAgJRAAgCAMAAAAAAAAAAAAiAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Persistence\Repository\UnitOfWork.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AgendaCalendar.Domain.Entities.EventParticipant">
+    <Position X="13.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Entities\EventParticipant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="AgendaCalendar.Domain.Abstractions.IEvent">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAABACAgAEAAAAAAAAAAIAAgAAAAABBAAAAAAAA=</HashCode>
+      <FileName>Domain\Abstractions\IEvent.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="AgendaCalendar.IService" Collapsed="true">
-    <Position X="7.25" Y="0.5" Width="1.5" />
+  <Interface Name="AgendaCalendar.Domain.Abstractions.IRepository&lt;T&gt;">
+    <Position X="8" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>IService.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAACIAgAAAAAAAAAIIA=</HashCode>
+      <FileName>Domain\Abstractions\IRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="AgendaCalendar.IEvent">
-    <Position X="9" Y="0.5" Width="1.5" />
+  <Interface Name="AgendaCalendar.Application.Abstractions.IService&lt;T&gt;">
+    <Position X="8" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAgAEAAAAAAAAAAIAAgAAAAABAAAAAAAAA=</HashCode>
-      <FileName>IEvent.cs</FileName>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAEAAAAAAAgAAAAAAAAAIIA=</HashCode>
+      <FileName>Application\Abstractions\IService.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Enum Name="AgendaCalendar.RecurrenceType">
-    <Position X="10.75" Y="2" Width="1.5" />
+  <Interface Name="AgendaCalendar.Domain.Abstractions.IUnitOfWork">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAgABAAACAMAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Abstractions\IUnitOfWork.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="AgendaCalendar.Domain.Entities.RecurrenceType">
+    <Position X="11.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AABAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAgAAAAAAgA=</HashCode>
-      <FileName>RecurrenceType.cs</FileName>
+      <FileName>Domain\Entities\RecurrenceType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

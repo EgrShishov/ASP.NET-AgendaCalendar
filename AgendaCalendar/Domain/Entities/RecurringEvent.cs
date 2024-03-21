@@ -1,4 +1,5 @@
 ﻿using AgendaCalendar.Domain.Abstractions;
+using System.Text.Json.Serialization;
 
 namespace AgendaCalendar.Domain.Entities
 {
@@ -24,25 +25,37 @@ namespace AgendaCalendar.Domain.Entities
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public string Title { get; set; }
+        public List<EventParticipant> EventParticipants { get; set; } = new();
 
         public bool Update(IEvent newEvent)
         {
-            if (newEvent == null) return false;
+            var _event = newEvent as RecurringEvent;
+            if (_event == null) return false;
 
-            Title = newEvent.Title;
-            StartTime = newEvent.StartTime;
-            EndTime = newEvent.EndTime;
-            Description = newEvent.Description;
-            AuthorId = newEvent.AuthorId;
-            //Interval = newEvent.Interval;
-            //Type = newEvent.Type;
+            Title = _event.Title;
+            StartTime = _event.StartTime;
+            EndTime = _event.EndTime;
+            Description = _event.Description;
+            AuthorId = _event.AuthorId;
+            Interval = _event.Interval;
+            Type = _event.Type;
 
             return true;
         }
 
         public override string ToString()
         {
-            return $"Event : {Title}, starts : {StartTime}, Desc: {Description}, Interval : {Interval}";
+            return $"Event : {Title}, starts : {StartTime}, Desc: {Description}, Interval : {Interval}, Type: {Type}";
+        }
+
+        public void AddParticipant(EventParticipant participant)
+        {
+            if (participant != null) EventParticipants.Add(participant);
+        }
+
+        public void RemoveParticipant(EventParticipant participant)
+        {
+            if (participant != null) EventParticipants.Remove(participant);
         }
     }
 }

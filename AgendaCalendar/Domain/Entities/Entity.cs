@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace AgendaCalendar.Domain.Entities
 {
     public class Entity
     {
-        public int Id { get; set;  }
+        [Key]
+        public int Id { get; set; } = Math.Abs(BitConverter.ToInt32(Guid.NewGuid().ToByteArray(), 0));
     }
 }

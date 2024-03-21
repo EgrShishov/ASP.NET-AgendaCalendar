@@ -1,5 +1,4 @@
 ﻿using AgendaCalendar.Domain.Abstractions;
-using AgendaCalendar.Domain.Entities;
 using AgendaCalendar.Persistence.Data;
 using System.Linq.Expressions;
 
@@ -42,10 +41,11 @@ namespace AgendaCalendar.Persistence.Repository
             return query.ToList();
         }
 
-        public async Task UpdateAsync(IEvent ev, CancellationToken cancellationToken = default)
+        public async Task<IEvent> UpdateAsync(IEvent ev, CancellationToken cancellationToken = default)
         {
             var MyEvent = _dbContext.Events.FirstOrDefault(x => x.Id == ev.Id);
             MyEvent?.Update(ev);
+            return MyEvent;
             //state modified
         }
     }

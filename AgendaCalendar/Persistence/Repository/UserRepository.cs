@@ -27,7 +27,7 @@ namespace AgendaCalendar.Persistence.Repository
 
         public async Task<User> GetByIdAsync(int id, CancellationToken cancellationToken = default)
         {
-            return _dbContext.Users.FirstOrDefault(x => x.Id == id);
+            return _dbContext.Users.FirstOrDefault(x => x.Id.Equals(id));
         }
 
         public async Task<IReadOnlyList<User>> GetListAsync(CancellationToken cancellationToken = default)
@@ -44,10 +44,11 @@ namespace AgendaCalendar.Persistence.Repository
             return query.ToList();
         }
 
-        public async Task UpdateAsync(User user, CancellationToken cancellationToken = default)
+        public async Task<User> UpdateAsync(User user, CancellationToken cancellationToken = default)
         {
             var myUser = _dbContext.Users.FirstOrDefault(x => x.Id == user.Id);
             myUser.Update(user);
+            return myUser;
         }
     }
 }

@@ -1,4 +1,7 @@
 ﻿
+using AgendaCalendar.Domain.Entities;
+using System.ComponentModel;
+
 namespace AgendaCalendar.Domain.Abstractions
 {
     public interface IEvent
@@ -9,6 +12,9 @@ namespace AgendaCalendar.Domain.Abstractions
         DateTime StartTime { get; set; }
         DateTime EndTime { get; set; }
         string Title { get; set; }
+        List<EventParticipant> EventParticipants { get; set; }
+        void AddParticipant(EventParticipant participant);
+        void RemoveParticipant(EventParticipant participant);
         bool Update(IEvent newEvent);
     }
 }

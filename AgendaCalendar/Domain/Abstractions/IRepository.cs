@@ -10,6 +10,6 @@ namespace AgendaCalendar.Domain.Abstractions
         Task<IReadOnlyList<T>> GetListAsync(CancellationToken cancellationToken = default);
         Task<T> GetByIdAsync(int id, CancellationToken cancellationToken = default);
         Task<IReadOnlyList<T>> ListAsync(Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default);
-        Task UpdateAsync(T entity, CancellationToken cancellationToken = default);
+        Task<T> UpdateAsync(T entity, CancellationToken cancellationToken = default);
     }
 }

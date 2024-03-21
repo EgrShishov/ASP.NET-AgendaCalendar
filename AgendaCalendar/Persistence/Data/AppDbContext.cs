@@ -1,6 +1,7 @@
 ﻿using AgendaCalendar.Domain.Abstractions;
 using AgendaCalendar.Domain.Entities;
 using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace AgendaCalendar.Persistence.Data
 {
@@ -11,26 +12,28 @@ namespace AgendaCalendar.Persistence.Data
         private FileStream? ReminderDbContext;
         private FileStream? EventDbContext;
 
-        public void SaveChanges()
+        public AppDbContext() 
         {
-            CalendarDbContext.SetLength(0);
+            CreateDatabase();
+        }
+
+        public Task SaveChanges()
+        {
+            UserDbContext = new("UserTable.txt", FileMode.OpenOrCreate);
+            ReminderDbContext = new("ReminderTable.txt", FileMode.OpenOrCreate);
+
             UserDbContext.SetLength(0);
             ReminderDbContext.SetLength(0);
-            EventDbContext.SetLength(0);
 
-            var calendarJson = JsonSerializer.Serialize<List<Calendar>>(Calendars,
-                new JsonSerializerOptions { WriteIndented = true});
-            var userJson = JsonSerializer.Serialize<List<User>>(Users,
+            var calendarJson = JsonConvert.SerializeObject(Calendars, Newtonsoft.Json.Formatting.Indented,
+            new Newtonsoft.Json.JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
+            var userJson = System.Text.Json.JsonSerializer.Serialize<List<User>>(Users,
                  new JsonSerializerOptions { WriteIndented = true });
-            var eventJson = JsonSerializer.Serialize<List<IEvent>>(Events,
-                 new JsonSerializerOptions { WriteIndented = true });
-            var reminderJson = JsonSerializer.Serialize<List<Reminder>>(Reminders,
+            var eventJson = JsonConvert.SerializeObject(Events, Newtonsoft.Json.Formatting.Indented,
+            new Newtonsoft.Json.JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
+            var reminderJson = System.Text.Json.JsonSerializer.Serialize<List<Reminder>>(Reminders,
                  new JsonSerializerOptions { WriteIndented = true });
 
-            using (StreamWriter sw = new(CalendarDbContext))
-            {
-                sw.WriteLine(calendarJson);
-            }
             using (StreamWriter sw = new(UserDbContext))
             {
                 sw.WriteLine(userJson);
@@ -39,36 +42,46 @@ namespace AgendaCalendar.Persistence.Data
             {
                 sw.WriteLine(reminderJson);
             }
-            using (StreamWriter sw = new(EventDbContext))
-            {
-                sw.WriteLine(eventJson);
-            }
+            File.WriteAllText("CalendarTable.txt", calendarJson);
+            File.WriteAllText("EventTable.txt",eventJson);
+            return Task.CompletedTask;
         }
 
-        public void DeleteDatabase()
+        public Task DeleteDatabase()
         {
-            CalendarDbContext.Close();
-            UserDbContext.Close();
-            EventDbContext.Close();
-            ReminderDbContext.Close();
+            Calendars.Clear();
+            Events.Clear();
+            Users.Clear();
+            Reminders.Clear();
+            return Task.CompletedTask;
         }
 
-        public void CreateDatabase()
+        public Task CreateDatabase()
         {
-            CalendarDbContext = new("CalendarTable.txt", FileMode.OpenOrCreate);
+            Calendars = new();
+            Reminders = new();
+            Events = new();
+            Users = new();
+            //CalendarDbContext = new("CalendarTable.txt", FileMode.OpenOrCreate);
             UserDbContext = new("UserTable.txt", FileMode.OpenOrCreate);
-            EventDbContext = new("EventTable.txt", FileMode.OpenOrCreate);
             ReminderDbContext = new("ReminderTable.txt", FileMode.OpenOrCreate);
 
-            Calendars = JsonSerializer.Deserialize<List<Calendar>>(CalendarDbContext);
-            Users = JsonSerializer.Deserialize<List<User>>(UserDbContext);
-            //Events = JsonSerializer.Deserialize<List<IEvent>>(EventDbContext);
-            Reminders = JsonSerializer.Deserialize<List<Reminder>>(ReminderDbContext);
+            Calendars = JsonConvert.DeserializeObject<List<Calendar>>(File.ReadAllText("CalendarTable.txt"),
+                new Newtonsoft.Json.JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
+            Users = System.Text.Json.JsonSerializer.Deserialize<List<User>>(UserDbContext);
+            Events = Newtonsoft.Json.JsonConvert.DeserializeObject<List<IEvent>>(File.ReadAllText("EventTable.txt"),
+                new Newtonsoft.Json.JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
+            Reminders = System.Text.Json.JsonSerializer.Deserialize<List<Reminder>>(ReminderDbContext);
+
+            //CalendarDbContext.Close();
+            UserDbContext.Close();
+            ReminderDbContext.Close();
+            return Task.CompletedTask;
         }
 
-        public List<Calendar> Calendars { get; set; } = new();
-        public List<IEvent> Events { get; set; } = new();
-        public List<Reminder> Reminders { get; set; } = new();
-        public List<User> Users { get; set; } = new();
+        public List<Calendar>? Calendars { get; set; }
+        public List<IEvent>? Events { get; set; }
+        public List<Reminder>? Reminders { get; set; }
+        public List<User>? Users { get; set; }
     }
 }

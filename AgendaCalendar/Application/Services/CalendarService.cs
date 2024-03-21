@@ -1,59 +1,107 @@
 ﻿using AgendaCalendar.Application.Abstractions;
+using AgendaCalendar.Domain.Abstractions;
 using AgendaCalendar.Domain.Entities;
-using AgendaCalendar.Persistence.Repository;
+using Newtonsoft.Json;
 
 namespace AgendaCalendar.Application.Services
 {
     public class CalendarService : IService<Calendar>
     {
-        private CalendarRepository calendarsRepository;
+        private IUnitOfWork unitOfWork;
 
-        public CalendarService(CalendarRepository calendarsRepository) 
+        public CalendarService(IUnitOfWork unitOfWork) 
         {
-            this.calendarsRepository = calendarsRepository;
+            this.unitOfWork = unitOfWork;
         }
 
-        /// <summary>
-        /// Imports calendar with given calendar_id. Inputs csv or ics format
-        /// </summary>
-        /// <param></param>
-        /// <returns></returns>
-        // throuh serialization lib
-        public void ImportCalendar()
+        // through serialization lib
+        public void ImportCalendar(Stream calendarData)
         {
+            var newCalendar = new Calendar();
+            
             throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Exports calendar with given calendar_id in csv or ics format
-        /// </summary>
-        /// <param name="calendarId"></param>
-        /// <returns></returns>
-        public void ExportCalendar(int calendarId)
+        //through serialization lib
+        public Stream ExportCalendar(int calendarId)
         {
-            var myCalendar = calendarsRepository.GetByIdAsync(calendarId);
+            var myCalendar = unitOfWork.CalendarRepository.GetByIdAsync(calendarId);
+            var jsonCalendar = JsonConvert.SerializeObject(myCalendar, Formatting.Indented,
+                    new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
+
+            throw new NotImplementedException();
         }
 
         public async Task<IEnumerable<Calendar>> GetAllAsync()
         {
-            return await calendarsRepository.GetListAsync();
+            return await unitOfWork.CalendarRepository.GetListAsync();
         }
         public async Task<Calendar> GetByIdAsync(int id)
         {
-            return await calendarsRepository.GetByIdAsync(id);
+            return await unitOfWork.CalendarRepository.GetByIdAsync(id);
         }
 
         public async Task DeleteAsync(int id)
         {
-            await calendarsRepository.DeleteAsync(id);
+            await unitOfWork.CalendarRepository.DeleteAsync(id);
+            await unitOfWork.SaveAllAsync();
         }
 
         public async Task AddAsync(Calendar item)
         {
-            await calendarsRepository.AddAsync(item);
+            await unitOfWork.CalendarRepository.AddAsync(item);
+            await unitOfWork.SaveAllAsync();
         }
 
-        public Task<Calendar> UpdateAsync(Calendar item)
+        public async Task<Calendar> UpdateAsync(Calendar item)
+        {
+            var updatedCalendar = await unitOfWork.CalendarRepository.UpdateAsync(item);
+            await unitOfWork.SaveAllAsync();
+            return updatedCalendar;
+        }
+
+        public async Task<IEnumerable<Calendar>> GetUserCalendars(int id)
+        {
+            var calendars = await unitOfWork.CalendarRepository.ListAsync(x => x.AuthorId.Equals(id));
+            if(calendars is not null)
+            {
+                return calendars;
+            }
+            return null;
+        }
+
+        public async Task SubscribeToCalendar(int calendarId, int userId)
+        {
+            var calendar = await unitOfWork.CalendarRepository.GetByIdAsync(calendarId);
+            if(calendar is not null) calendar.Subscribers.Add(userId);
+        }
+
+        public async Task UnsubscribeFromCalendar(int calendarId, int userId)
+        {
+            var calendar = await unitOfWork.CalendarRepository.GetByIdAsync(calendarId);
+            if (calendar is not null) calendar.Subscribers.Remove(userId);
+        }
+
+        public async Task<IEnumerable<int>> GetUserSubscriptions(int userId)
+        {
+            var userCalendars = await unitOfWork.CalendarRepository.ListAsync(x => x.Subscribers.Contains(userId));
+            var userSubscriptions = new List<int>();
+            if (userCalendars is not null)
+            {
+                foreach (var item in userCalendars)
+                {
+                    userSubscriptions.Add(item.Id);
+                }
+            }
+            return userSubscriptions;
+        }
+
+        public async Task AddCalendarByUrl(string url) //integration with another ical calendars
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task ExportCalendarByUrl(int calendarId)
         {
             throw new NotImplementedException();
         }

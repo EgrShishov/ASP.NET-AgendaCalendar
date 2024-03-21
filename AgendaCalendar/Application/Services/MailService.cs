@@ -10,9 +10,10 @@ namespace AgendaCalendar.Application.Services
 
         public MailService()
         {
+
         }
 
-        public async Task SendEmailAsync(Reminder reminder, CancellationToken cancellationToken = default)
+        public async Task SendReminderAsync(Reminder reminder, CancellationToken cancellationToken = default)
         {
             smtp = new();
             smtp.Connect("smtp.yandex.ru", 465, MailKit.Security.SecureSocketOptions.SslOnConnect);

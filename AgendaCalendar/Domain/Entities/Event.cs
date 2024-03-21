@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using AgendaCalendar.Domain.Abstractions;
+﻿using AgendaCalendar.Domain.Abstractions;
 
 namespace AgendaCalendar.Domain.Entities
 {
@@ -19,8 +15,6 @@ namespace AgendaCalendar.Domain.Entities
             Description = Desc;
             AuthorId = author;
         }
-
-        public int Id { get; set; }
         public string Title { get; set; }
 
         public DateTime StartTime { get; set; }
@@ -31,6 +25,9 @@ namespace AgendaCalendar.Domain.Entities
 
         public int AuthorId { get; set; }
 
+        public List<EventParticipant> EventParticipants { get; set; } = new();
+        public int Id { get; set; }
+
         public bool Update(IEvent newEvent)
         {
             if (newEvent == null) return false;
@@ -40,6 +37,7 @@ namespace AgendaCalendar.Domain.Entities
             EndTime = newEvent.EndTime;
             Description = newEvent.Description;
             AuthorId = newEvent.AuthorId;
+            EventParticipants = newEvent.EventParticipants;
 
             return true;
         }
@@ -47,6 +45,16 @@ namespace AgendaCalendar.Domain.Entities
         public override string ToString()
         {
             return $"Event : {Title}, starts : {StartTime}, Desc: {Description}";
+        }
+
+        public void AddParticipant(EventParticipant participant)
+        {
+            if (participant != null) EventParticipants.Add(participant);
+        }
+
+        public void RemoveParticipant(EventParticipant participant)
+        {
+            if (participant != null) EventParticipants.Remove(participant);
         }
     }
 }

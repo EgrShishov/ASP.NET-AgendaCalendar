@@ -2,7 +2,6 @@
 using AgendaCalendar.Domain.Entities;
 using AgendaCalendar.Persistence.Data;
 using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
 
 namespace AgendaCalendar.Persistence.Repository
 {
@@ -44,10 +43,11 @@ namespace AgendaCalendar.Persistence.Repository
             return query.ToList();
         }
 
-        public async Task UpdateAsync(Reminder reminder, CancellationToken cancellationToken = default)
+        public async Task<Reminder> UpdateAsync(Reminder reminder, CancellationToken cancellationToken = default)
         {
             var myReminder = _dbContext.Reminders.FirstOrDefault(x => x.Id == reminder.Id);
             myReminder.Update(reminder);
+            return myReminder;
         }
     }
 }
