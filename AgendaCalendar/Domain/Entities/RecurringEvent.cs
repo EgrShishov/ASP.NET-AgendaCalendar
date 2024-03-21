@@ -7,9 +7,8 @@ namespace AgendaCalendar.Domain.Entities
     {
         public RecurringEvent() { }
 
-        public RecurringEvent(int id, string Title, DateTime StartTime, DateTime EndTime, string Desc, int author, int interval, RecurrenceType type)
+        public RecurringEvent(string Title, DateTime StartTime, DateTime EndTime, string Desc, int author, int interval, RecurrenceType type)
         {
-            Id = id;
             this.Title = Title;
             this.StartTime = StartTime;
             this.EndTime = EndTime;

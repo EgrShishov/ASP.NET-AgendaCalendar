@@ -12,7 +12,7 @@ namespace AgendaCalendar.Application.Reminders.Commands
         public async Task<IReadOnlyList<Reminder>> Handle(CheckRemindersCommand request, CancellationToken cancellationToken)
         {
             var mailService = new MailService();
-            DateTime currentTime = DateTime.Now.ToUniversalTime();
+            DateTime currentTime = DateTime.Now;
             List<Reminder> remindersToSend = new List<Reminder>();
 
             foreach (var reminder in await unitOfWork.ReminderRepository.GetListAsync())
@@ -22,13 +22,14 @@ namespace AgendaCalendar.Application.Reminders.Commands
                     remindersToSend.Add(reminder);
                 }
             }
-
+            Console.WriteLine(remindersToSend.Count);
             foreach (var reminder in remindersToSend)
             {
-                await mailService.SendReminderAsync(reminder);
+                //await mailService.SendReminderAsync(reminder);
                 await unitOfWork.ReminderRepository.DeleteAsync(reminder.Id);
             }
 
+            await unitOfWork.SaveAllAsync();
             return remindersToSend;
         }
     }

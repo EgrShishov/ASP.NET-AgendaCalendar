@@ -32,7 +32,7 @@ namespace AgendaCalendar.Persistence.Repository
 
         public async Task<IReadOnlyList<User>> GetListAsync(CancellationToken cancellationToken = default)
         {
-            var query = _dbContext.Users.AsQueryable();
+           // var query = _dbContext.Users.AsQueryable();
             return _dbContext.Users.ToList().AsReadOnly();
         }
 

@@ -2,13 +2,12 @@
 
 namespace AgendaCalendar.Domain.Entities
 {
-    public class Event : IEvent
+    public class Event : Entity, IEvent
     {
         public Event() { }
 
-        public Event(int id, string Title, DateTime StartTime, DateTime EndTime, string Desc, int author)
+        public Event(string Title, DateTime StartTime, DateTime EndTime, string Desc, int author)
         {
-            Id = id;
             this.Title = Title;
             this.StartTime = StartTime;
             this.EndTime = EndTime;
@@ -26,7 +25,6 @@ namespace AgendaCalendar.Domain.Entities
         public int AuthorId { get; set; }
 
         public List<EventParticipant> EventParticipants { get; set; } = new();
-        public int Id { get; set; }
 
         public bool Update(IEvent newEvent)
         {
