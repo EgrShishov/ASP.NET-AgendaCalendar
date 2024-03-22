@@ -1,0 +1,12 @@
+C:\AgendaCalendar\AgendaCalendar.Domain\bin\Debug\net8.0\AgendaCalendar.Domain.deps.json
+C:\AgendaCalendar\AgendaCalendar.Domain\bin\Debug\net8.0\AgendaCalendar.Domain.dll
+C:\AgendaCalendar\AgendaCalendar.Domain\bin\Debug\net8.0\AgendaCalendar.Domain.pdb
+C:\AgendaCalendar\AgendaCalendar.Domain\obj\Debug\net8.0\AgendaCalendar.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\AgendaCalendar\AgendaCalendar.Domain\obj\Debug\net8.0\AgendaCalendar.Domain.AssemblyInfoInputs.cache
+C:\AgendaCalendar\AgendaCalendar.Domain\obj\Debug\net8.0\AgendaCalendar.Domain.AssemblyInfo.cs
+C:\AgendaCalendar\AgendaCalendar.Domain\obj\Debug\net8.0\AgendaCalendar.Domain.csproj.CoreCompileInputs.cache
+C:\AgendaCalendar\AgendaCalendar.Domain\obj\Debug\net8.0\AgendaCalendar.Domain.sourcelink.json
+C:\AgendaCalendar\AgendaCalendar.Domain\obj\Debug\net8.0\AgendaCalendar.Domain.dll
+C:\AgendaCalendar\AgendaCalendar.Domain\obj\Debug\net8.0\refint\AgendaCalendar.Domain.dll
+C:\AgendaCalendar\AgendaCalendar.Domain\obj\Debug\net8.0\AgendaCalendar.Domain.pdb
+C:\AgendaCalendar\AgendaCalendar.Domain\obj\Debug\net8.0\ref\AgendaCalendar.Domain.dll
