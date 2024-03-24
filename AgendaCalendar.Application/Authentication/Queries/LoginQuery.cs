@@ -1,12 +1,10 @@
-﻿using AgendaCalendar.Domain.Abstractions;
-using AgendaCalendar.Domain.Entities;
-using MediatR;
+﻿using AgendaCalendar.Application.Common.Interfaces;
 
-namespace AgendaCalendar.Core.Application
+namespace AgendaCalendar.Application
 {
     public sealed record LoginQuery(string userName, string password) : IRequest<User> { }
 
-    public class LoginQueryHandler(IUnitOfWork unitOfWork) : IRequestHandler<LoginQuery, User>
+    public class LoginQueryHandler(IUnitOfWork unitOfWork, IJwtTokenGenerator jwtTokenGenerator) : IRequestHandler<LoginQuery, User>
     {
         public async Task<User> Handle(LoginQuery request, CancellationToken cancellationToken)
         {

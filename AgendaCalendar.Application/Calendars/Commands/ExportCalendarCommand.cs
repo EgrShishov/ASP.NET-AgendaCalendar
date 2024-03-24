@@ -1,7 +1,4 @@
 ﻿
-using AgendaCalendar.Domain.Abstractions;
-using MediatR;
-
 namespace AgendaCalendar.Application.Calendars.Commands
 {
     public sealed record ExportCalendarCommand(int calendarId) : IRequest<string> { }
@@ -12,7 +9,7 @@ namespace AgendaCalendar.Application.Calendars.Commands
         {
             var calendar = await unitOfWork.CalendarRepository.GetByIdAsync(request.calendarId);
             if (calendar == null) return string.Empty;
-
+            //through serialization library implement
             return string.Empty;
         }
     }

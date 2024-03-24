@@ -1,17 +1,15 @@
-﻿using AgendaCalendar.Application.Services;
-using AgendaCalendar.Domain.Abstractions;
-using AgendaCalendar.Domain.Entities;
-using MediatR;
+﻿using AgendaCalendar.Application.Emails.Commands;
+using MailKit;
+using MailKit.Net.Smtp;
 
 namespace AgendaCalendar.Application.Reminders.Commands
 {
     public sealed record CheckRemindersCommand() : IRequest<IReadOnlyList<Reminder>> { }
 
-    public class CheckRemindersCommandHandler(IUnitOfWork unitOfWork) : IRequestHandler<CheckRemindersCommand, IReadOnlyList<Reminder>>
+    public class CheckRemindersCommandHandler(IUnitOfWork unitOfWork, IMediator mediator) : IRequestHandler<CheckRemindersCommand, IReadOnlyList<Reminder>>
     {
         public async Task<IReadOnlyList<Reminder>> Handle(CheckRemindersCommand request, CancellationToken cancellationToken)
         {
-            var mailService = new MailService();
             DateTime currentTime = DateTime.Now;
             List<Reminder> remindersToSend = new List<Reminder>();
 
@@ -25,7 +23,7 @@ namespace AgendaCalendar.Application.Reminders.Commands
             Console.WriteLine(remindersToSend.Count);
             foreach (var reminder in remindersToSend)
             {
-                //await mailService.SendReminderAsync(reminder);
+                await mediator.Send(new SendReminderCommand(reminder));
                 await unitOfWork.ReminderRepository.DeleteAsync(reminder.Id);
             }
 

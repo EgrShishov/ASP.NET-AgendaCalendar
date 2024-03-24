@@ -1,7 +1,4 @@
-﻿using AgendaCalendar.Domain.Abstractions;
-using AgendaCalendar.Domain.Entities;
-using MediatR;
-
+﻿
 namespace AgendaCalendar.Application.Calendars.Queries
 {
     public sealed record CalendarByIdQuery(int calendarId) : IRequest<Calendar> { }

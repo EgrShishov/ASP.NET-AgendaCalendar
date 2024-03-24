@@ -1,7 +1,4 @@
-﻿using AgendaCalendar.Domain.Abstractions;
-using AgendaCalendar.Domain.Entities;
-using MediatR;
-
+﻿
 namespace AgendaCalendar.Application.Calendars.Commands
 {
     public sealed record ImportCalendarCommand() : IRequest<Calendar> { }
@@ -12,6 +9,7 @@ namespace AgendaCalendar.Application.Calendars.Commands
         {
             //var calendar = await unitOfWork.CalendarRepository.GetByIdAsync(request.calendarId);
             //if (calendar == null) return string.Empty;
+            //through deserialization library implement
             return null;
         }
     }
