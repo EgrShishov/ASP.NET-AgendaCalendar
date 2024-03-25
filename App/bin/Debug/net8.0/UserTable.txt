@@ -1,9 +1,0 @@
-[
-  {
-    "UserName": "EgrShishov",
-    "Password": "123",
-    "Email": "e.shishov98@yandex.ru",
-    "BirthdayDate": "0001-01-01T00:00:00",
-    "Id": 566795566
-  }
-]
