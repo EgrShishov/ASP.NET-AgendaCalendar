@@ -11,7 +11,14 @@ namespace AgendaCalendar.Application.Calendars.Commands
     {
         public async Task<Calendar> Handle(CreateCalendarCommand request, CancellationToken cancellationToken)
         {
-            var new_calendar = new Calendar(request.title, request.description, request.authorId, request.events, request.reminders);
+            var new_calendar = new Calendar()
+            {
+                Title = request.title, 
+                CalendarDescription = request.description, 
+                AuthorId = request.authorId, 
+                Events = request.events, 
+                Reminders = request.reminders 
+            };
             await unitOfWork.CalendarRepository.AddAsync(new_calendar);
             await unitOfWork.SaveAllAsync();
             return new_calendar;

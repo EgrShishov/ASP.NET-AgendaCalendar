@@ -44,7 +44,7 @@ namespace AgendaCalendar.Infrastructure.Persistence.Repository
         public async Task<Calendar> UpdateAsync(Calendar calendar, CancellationToken cancellationToken = default)
         {
             var myCalendar = _dbContext.Calendars.Find(x => x.Id == calendar.Id);
-            myCalendar.Update(calendar);
+            myCalendar = calendar;
             return myCalendar;
         }
     }

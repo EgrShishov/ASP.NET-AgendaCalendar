@@ -8,12 +8,12 @@ namespace AgendaCalendar.Application
     {
         public async Task<User> Handle(LoginQuery request, CancellationToken cancellationToken)
         {
-            var users = await unitOfWork.UserRepository.GetListAsync(cancellationToken);
-            foreach(var user in users) 
-            {
-                if (user.UserName == request.userName && user.Password == request.password) return user;
-            }
-            return null;
+            var users = await unitOfWork.UserRepository.ListAsync(
+                user => user.UserName == request.userName && user.Password == request.password);
+            if (users is null) return null;
+            var user = users.First();
+            //var token = jwtTokenGenerator.GenerateToken(user.Id, user.UserName, user.Email);
+            return user;
         }
     }
 }

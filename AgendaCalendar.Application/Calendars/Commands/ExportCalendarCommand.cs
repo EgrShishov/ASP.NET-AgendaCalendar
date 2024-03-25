@@ -1,4 +1,5 @@
-﻿
+﻿using _De_SerializationLib;
+
 namespace AgendaCalendar.Application.Calendars.Commands
 {
     public sealed record ExportCalendarCommand(int calendarId) : IRequest<string> { }
@@ -9,8 +10,9 @@ namespace AgendaCalendar.Application.Calendars.Commands
         {
             var calendar = await unitOfWork.CalendarRepository.GetByIdAsync(request.calendarId);
             if (calendar == null) return string.Empty;
-            //through serialization library implement
-            return string.Empty;
+            var serialized_calendar = IcalConverter.Serialize(calendar);
+            if (serialized_calendar == null) return string.Empty;
+            return serialized_calendar;
         }
     }
 }

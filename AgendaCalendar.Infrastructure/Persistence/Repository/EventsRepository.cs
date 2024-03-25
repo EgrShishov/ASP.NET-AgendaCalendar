@@ -44,7 +44,7 @@ namespace AgendaCalendar.Infrastructure.Persistence.Repository
         public async Task<IEvent> UpdateAsync(IEvent ev, CancellationToken cancellationToken = default)
         {
             var MyEvent = _dbContext.Events.FirstOrDefault(x => x.Id == ev.Id);
-            MyEvent?.Update(ev);
+            MyEvent = ev;
             return MyEvent;
             //state modified
         }

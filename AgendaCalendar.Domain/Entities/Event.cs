@@ -5,15 +5,6 @@ namespace AgendaCalendar.Domain.Entities
     public class Event : Entity, IEvent
     {
         public Event() { }
-
-        public Event(string Title, DateTime StartTime, DateTime EndTime, string Desc, int author)
-        {
-            this.Title = Title;
-            this.StartTime = StartTime;
-            this.EndTime = EndTime;
-            Description = Desc;
-            AuthorId = author;
-        }
         public string Title { get; set; }
 
         public DateTime StartTime { get; set; }
@@ -26,19 +17,7 @@ namespace AgendaCalendar.Domain.Entities
 
         public List<EventParticipant> EventParticipants { get; set; } = new();
 
-        public bool Update(IEvent newEvent)
-        {
-            if (newEvent == null) return false;
-
-            Title = newEvent.Title;
-            StartTime = newEvent.StartTime;
-            EndTime = newEvent.EndTime;
-            Description = newEvent.Description;
-            AuthorId = newEvent.AuthorId;
-            EventParticipants = newEvent.EventParticipants;
-
-            return true;
-        }
+        public string Location { get; set; }
 
         public override string ToString()
         {

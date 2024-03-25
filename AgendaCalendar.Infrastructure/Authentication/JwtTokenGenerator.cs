@@ -1,4 +1,5 @@
 ﻿using AgendaCalendar.Application.Common.Interfaces;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -8,9 +9,14 @@ namespace AgendaCalendar.Infrastructure.Authentication
 {
     public class JwtTokenGenerator : IJwtTokenGenerator
     {
+        private readonly JwtSettings jwtSettings;
+        public JwtTokenGenerator(IOptions<JwtSettings> jwtOptions)
+        {
+            jwtSettings = jwtOptions.Value;
+        }
         public string GenerateToken(int userId, string userName, string email)
         {
-            var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("gfhsdg73274uhf34io#(@*&hd")), SecurityAlgorithms.Sha256);
+            var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret)), SecurityAlgorithms.Sha256);
 
             var claims = new[]
             {
@@ -20,7 +26,7 @@ namespace AgendaCalendar.Infrastructure.Authentication
                 new Claim(JwtRegisteredClaimNames.Sub, userId.ToString())
             };
 
-            var token = new JwtSecurityToken(issuer:"AgendaCalendar", expires:DateTime.Now.AddDays(1),claims: claims, signingCredentials: signingCredentials);
+            var token = new JwtSecurityToken(issuer: jwtSettings.Issuer, expires: DateTime.Now.AddMinutes(jwtSettings.ExpiryMinutes), claims: claims, signingCredentials: signingCredentials);
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }

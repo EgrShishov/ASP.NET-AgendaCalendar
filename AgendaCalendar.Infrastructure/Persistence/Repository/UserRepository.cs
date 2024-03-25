@@ -47,7 +47,7 @@ namespace AgendaCalendar.Infrastructure.Persistence.Repository
         public async Task<User> UpdateAsync(User user, CancellationToken cancellationToken = default)
         {
             var myUser = _dbContext.Users.FirstOrDefault(x => x.Id == user.Id);
-            myUser.Update(user);
+            myUser = user;
             return myUser;
         }
     }

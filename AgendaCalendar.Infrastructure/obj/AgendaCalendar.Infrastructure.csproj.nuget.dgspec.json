@@ -187,9 +187,6 @@
             "projectReferences": {
               "C:\\AgendaCalendar\\AgendaCalendar.Application\\AgendaCalendar.Application.csproj": {
                 "projectPath": "C:\\AgendaCalendar\\AgendaCalendar.Application\\AgendaCalendar.Application.csproj"
-              },
-              "C:\\AgendaCalendar\\AgendaCalendar.Domain\\AgendaCalendar.Domain.csproj": {
-                "projectPath": "C:\\AgendaCalendar\\AgendaCalendar.Domain\\AgendaCalendar.Domain.csproj"
               }
             }
           }
@@ -209,6 +206,30 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Hangfire": {
+              "target": "Package",
+              "version": "[1.8.11, )"
+            },
+            "Hangfire.Core": {
+              "target": "Package",
+              "version": "[1.8.11, )"
+            },
+            "Hangfire.NetCore": {
+              "target": "Package",
+              "version": "[1.8.11, )"
+            },
+            "Hangfire.PostgreSql": {
+              "target": "Package",
+              "version": "[1.20.8, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
+            "Microsoft.Extensions.Configuration.UserSecrets": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
               "version": "[8.0.0, )"
@@ -216,6 +237,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[8.0.2, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",

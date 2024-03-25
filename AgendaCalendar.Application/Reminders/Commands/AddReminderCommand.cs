@@ -10,7 +10,13 @@ namespace AgendaCalendar.Application.Reminders.Commands
     {
         public async Task<Reminder> Handle(AddReminderCommand request, CancellationToken cancellationToken)
         {
-            var reminder = new Reminder(request.desc, request.time, request.emailAdress, request.eventId);
+            var reminder = new Reminder()
+            {
+                Description = request.desc, 
+                ReminderTime = request.time, 
+                Email = request.emailAdress, 
+                EventId = request.eventId
+            };
             await unitOfWork.ReminderRepository.AddAsync(reminder);
             await unitOfWork.SaveAllAsync();
 

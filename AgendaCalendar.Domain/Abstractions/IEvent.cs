@@ -1,6 +1,4 @@
-﻿
-using AgendaCalendar.Domain.Entities;
-using System.ComponentModel;
+﻿using AgendaCalendar.Domain.Entities;
 
 namespace AgendaCalendar.Domain.Abstractions
 {
@@ -15,6 +13,5 @@ namespace AgendaCalendar.Domain.Abstractions
         List<EventParticipant> EventParticipants { get; set; }
         void AddParticipant(EventParticipant participant);
         void RemoveParticipant(EventParticipant participant);
-        bool Update(IEvent newEvent);
     }
 }

@@ -8,15 +8,21 @@ namespace AgendaCalendar.Application
     {
         public async Task<User> Handle(RegisterCommand request, CancellationToken cancellationToken)
         {
-            var users = await unitOfWork.UserRepository.GetListAsync();
-            foreach(var user in users) 
-            {
-                if (user.UserName == request.userName && user.Password == request.password) return null;
-            }
+            var users = await unitOfWork.UserRepository.ListAsync(
+                user => user.UserName == request.userName && user.Password == request.password);
+            if (users is not null) return null;
 
-            var newUser = new User(request.userName, request.password, request.email);
+            var newUser = new User() 
+            {
+                UserName = request.userName, 
+                Password = request.password, 
+                Email = request.email 
+            };
             await unitOfWork.UserRepository.AddAsync(newUser);
             await unitOfWork.SaveAllAsync();
+
+            //var token = jwtTokenGenerator.GenerateToken(newUser.Id, newUser.UserName, newUser.Password);
+            //return token with result
             return newUser;
         }
     }

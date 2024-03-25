@@ -1,7 +1,7 @@
 ﻿
 namespace AgendaCalendar.Domain.Entities
 {
-    public enum RecurrenceType
+    public enum RecurrenceFrequency
     {
         Daily,
         Weekly,

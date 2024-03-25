@@ -1,6 +1,4 @@
 ﻿using AgendaCalendar.Application.Emails.Commands;
-using MailKit;
-using MailKit.Net.Smtp;
 
 namespace AgendaCalendar.Application.Reminders.Commands
 {
@@ -15,19 +13,20 @@ namespace AgendaCalendar.Application.Reminders.Commands
 
             foreach (var reminder in await unitOfWork.ReminderRepository.GetListAsync())
             {
-                if (reminder.ReminderTime - currentTime < TimeSpan.FromHours(1))
+                if (reminder.ReminderTime - currentTime < reminder.NotificationInterval)
                 {
                     remindersToSend.Add(reminder);
                 }
             }
-            Console.WriteLine(remindersToSend.Count);
-            foreach (var reminder in remindersToSend)
+            if (remindersToSend is not null)
             {
-                await mediator.Send(new SendReminderCommand(reminder));
-                await unitOfWork.ReminderRepository.DeleteAsync(reminder.Id);
+                foreach (var reminder in remindersToSend)
+                {
+                    await mediator.Send(new SendReminderCommand(reminder));
+                    await unitOfWork.ReminderRepository.DeleteAsync(reminder.Id);
+                }
+                await unitOfWork.SaveAllAsync();
             }
-
-            await unitOfWork.SaveAllAsync();
             return remindersToSend;
         }
     }

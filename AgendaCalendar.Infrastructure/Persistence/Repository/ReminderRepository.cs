@@ -46,7 +46,7 @@ namespace AgendaCalendar.Infrastructure.Persistence.Repository
         public async Task<Reminder> UpdateAsync(Reminder reminder, CancellationToken cancellationToken = default)
         {
             var myReminder = _dbContext.Reminders.FirstOrDefault(x => x.Id == reminder.Id);
-            myReminder.Update(reminder);
+            myReminder = reminder;
             return myReminder;
         }
     }
